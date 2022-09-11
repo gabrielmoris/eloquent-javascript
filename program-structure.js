@@ -23,6 +23,7 @@ const fizzBuzz = () => {
   }
 };
 
+//ChessBoard
 const chessBoard = (gridNum) => {
   let isPair = false;
   let gridTemplate = "";
