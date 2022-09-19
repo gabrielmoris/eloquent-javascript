@@ -16,3 +16,33 @@ function sum(numArr) {
   return result;
 }
 // console.log(sum(arrOfNum));
+
+// Reversing an Array
+
+const arrTest = [1, 2, 3, 4];
+
+function reverseArray(array) {
+  let arr = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+    arr.push(array[i]);
+  }
+  return arr;
+}
+// console.log("reverseArray: ", reverseArray(arrTest), "arrTest: ", arrTest);
+
+function reverseArrayInPlace(array) {
+  for (let i = array.length - 1; i >= 0; i--) {
+    array.push(array[i]);
+  }
+  for (let j = (array.length - 1) / 2; j >= 0; j--) {
+    array.shift();
+  }
+  return array;
+}
+
+console.log(
+  "reverseArrayInPlace: ",
+  reverseArrayInPlace(arrTest),
+  "arrTest: ",
+  arrTest
+);
