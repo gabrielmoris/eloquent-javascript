@@ -40,9 +40,40 @@ function reverseArrayInPlace(array) {
   return array;
 }
 
-console.log(
-  "reverseArrayInPlace: ",
-  reverseArrayInPlace(arrTest),
-  "arrTest: ",
-  arrTest
-);
+// console.log(
+//   "reverseArrayInPlace: ",
+//   reverseArrayInPlace(arrTest),
+//   "arrTest: ",
+//   arrTest
+// );
+
+//A List
+const arrArgument = [1, 2, 3];
+//create a list from array
+function arrayToList(arr) {
+  let list = null;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    list = {
+      value: arr[i],
+      rest: list,
+    };
+  }
+  return list;
+}
+const listFromArr = arrayToList(arrArgument);
+console.log(listFromArr);
+
+//create an aray from a list
+function listToArray() {
+  let arr = [];
+  return function pushList(list) {
+    if (list != null) {
+      arr.push(list.value);
+      return pushList(list.rest);
+    }
+    return arr;
+  };
+}
+
+console.log(listToArray()(listFromArr));
+//helper fucntion prepend(element,list){}
