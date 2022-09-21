@@ -61,7 +61,7 @@ function arrayToList(arr) {
   return list;
 }
 const listFromArr = arrayToList(arrArgument);
-console.log(listFromArr);
+console.log("Create a List from Array: ", listFromArr);
 
 //create an aray from a list
 function listToArray() {
@@ -75,5 +75,5 @@ function listToArray() {
   };
 }
 
-console.log(listToArray()(listFromArr));
+console.log("Create Array From List:", listToArray()(listFromArr));
 //helper fucntion prepend(element,list){}
