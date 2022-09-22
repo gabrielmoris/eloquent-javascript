@@ -48,7 +48,7 @@ function reverseArrayInPlace(array) {
 // );
 
 //A List
-const arrArgument = [1, 2, 3];
+const arrArgument = [1, 2, 3, 4, 5, 6, 7, 8];
 //create a list from array
 function arrayToList(arr) {
   let list = null;
@@ -63,7 +63,7 @@ function arrayToList(arr) {
 const listFromArr = arrayToList(arrArgument);
 console.log("Create a List from Array: ", listFromArr);
 
-//create an aray from a list
+//create an array from a list
 function listToArray() {
   let arr = [];
   return function pushList(list) {
@@ -77,3 +77,29 @@ function listToArray() {
 
 console.log("Create Array From List:", listToArray()(listFromArr));
 //helper fucntion prepend(element,list){}
+
+function prepend(element, list) {
+  let newElement = element;
+  newElement.rest = list;
+  return newElement;
+}
+
+// console.log("prepend:", prepend({ value: 19 }, listFromArr));
+
+//nth function gives me the element in the nth position
+
+function nth() {
+  let counter = 1;
+  return function checkNumber(list, number) {
+    if (counter != number) {
+      counter++;
+      return checkNumber(list.rest, number);
+    } else {
+      return list;
+    }
+  };
+}
+
+console.log("8th value of the list", nth()(listFromArr, 8));
+
+//Deep Comparison
