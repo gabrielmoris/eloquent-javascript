@@ -61,7 +61,7 @@ function arrayToList(arr) {
   return list;
 }
 const listFromArr = arrayToList(arrArgument);
-console.log("Create a List from Array: ", listFromArr);
+// console.log("Create a List from Array: ", listFromArr);
 
 //create an array from a list
 function listToArray() {
@@ -75,7 +75,7 @@ function listToArray() {
   };
 }
 
-console.log("Create Array From List:", listToArray()(listFromArr));
+// console.log("Create Array From List:", listToArray()(listFromArr));
 //helper fucntion prepend(element,list){}
 
 function prepend(element, list) {
@@ -100,6 +100,41 @@ function nth() {
   };
 }
 
-console.log("8th value of the list", nth()(listFromArr, 8));
+// console.log("8th value of the list", nth()(listFromArr, 8));
 
 //Deep Comparison
+function objectNestedChecker(obj) {
+  let object = Object.entries(obj);
+  let response = object.map((entry) => {
+    if (typeof entry === "object" && Array.isArray(entry)) {
+      console.log("entry", entry);
+      // return objectNestedChecker(entry);
+    }
+  });
+  console.log(response);
+}
+
+function deepEqual(value1, value2) {
+  if (value1 === value2) {
+    return true;
+  } else if (
+    typeof value1 === "object" &&
+    typeof value2 === "object" &&
+    value1 !== null &&
+    value2 !== null
+  ) {
+    // const keysObj1 = Object.entries(value1);
+    // const keysObj2 = Object.entries(value2);
+    // return keysObj1 == keysObj2;
+    objectNestedChecker(value1);
+  } else {
+    return false;
+  }
+}
+//I would like to check also nested objects
+console.log(
+  deepEqual(
+    { value: 1, rest: { value: 2, rest: { value: 3, rest: null } } },
+    { value: 1, rest: { value: 2, rest: { value: 3, rest: null } } }
+  )
+);
