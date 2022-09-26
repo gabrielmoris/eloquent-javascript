@@ -103,16 +103,6 @@ function nth() {
 // console.log("8th value of the list", nth()(listFromArr, 8));
 
 //Deep Comparison
-function objectNestedChecker(obj) {
-  let object = Object.entries(obj);
-  let response = object.map((entry) => {
-    if (typeof entry === "object" && Array.isArray(entry)) {
-      console.log("entry", entry);
-      // return objectNestedChecker(entry);
-    }
-  });
-  console.log(response);
-}
 
 function deepEqual(value1, value2) {
   if (value1 === value2) {
@@ -123,10 +113,7 @@ function deepEqual(value1, value2) {
     value1 !== null &&
     value2 !== null
   ) {
-    // const keysObj1 = Object.entries(value1);
-    // const keysObj2 = Object.entries(value2);
-    // return keysObj1 == keysObj2;
-    objectNestedChecker(value1);
+    return JSON.stringify(value1) === JSON.stringify(value2);
   } else {
     return false;
   }
