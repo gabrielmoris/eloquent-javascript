@@ -50,3 +50,7 @@ function loop(value, testFunction, update, bodyFunction) {
 }
 
 // console.log(loop(0, testFunction, update, bodyFunction));
+
+//Everything
+//implement a function that takes an array as a argument and a predicate function
+//2 versions, one with loop and another  using the some method
