@@ -7,7 +7,7 @@ function flattening(arr) {
   });
   return solution;
 }
-console.log(flattening(array));
+// console.log(flattening(array));
 
 //Your own loop
 //write a higher order function that provides something like a loop statement.
@@ -15,3 +15,38 @@ console.log(flattening(array));
 //Each iteration runs the test function and stops if it is false
 //Then calls the body function giving the current value
 //calls the update function to create a new value
+
+function testFunction(currentValue, endValue) {
+  if (currentValue === endValue) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+function updateFunction() {
+  let value = 1;
+  let result;
+  return function () {
+    return value++;
+  };
+}
+
+function bodyFunction(value) {
+  return value + 1;
+}
+const update = updateFunction();
+
+function loop(value, testFunction, update, bodyFunction) {
+  const updated = update();
+  const loopValue = bodyFunction(value);
+
+  if (testFunction(updated, 10)) {
+    loop(loopValue, testFunction, update, bodyFunction);
+  } else {
+    result = loopValue;
+  }
+  return result;
+}
+
+// console.log(loop(0, testFunction, update, bodyFunction));
