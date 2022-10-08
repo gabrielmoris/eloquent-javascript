@@ -33,7 +33,7 @@ function updateFunction() {
 }
 
 function bodyFunction(value) {
-  return value + 1;
+  return value * 2;
 }
 const update = updateFunction();
 
@@ -49,7 +49,7 @@ function loop(value, testFunction, update, bodyFunction) {
   return result;
 }
 
-// console.log(loop(0, testFunction, update, bodyFunction));
+// console.log(loop(1, testFunction, update, bodyFunction));
 
 //Everything
 //implement a function that takes an array as a argument and a predicate function
