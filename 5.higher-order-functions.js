@@ -54,3 +54,37 @@ function loop(value, testFunction, update, bodyFunction) {
 //Everything
 //implement a function that takes an array as a argument and a predicate function
 //2 versions, one with loop and another  using the some method
+
+//With loop
+function every(arr, predicate) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === predicate) {
+      count++;
+    }
+  }
+  if (count === arr.length) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//with some method***
+
+// just merely applying the some() method will not work, since latter returns true
+// when one element in the array passes the test.
+
+// To test if ALL elements pass the test with the some() method, use De Morgan’s laws,
+// which states that !(A && B) === !A || !B
+
+// We can modify De Morgan’s laws by using a double negation:
+// (A && B) === ! (!A || !B)
+function every2(arr, predicate) {
+  return !arr.some((element) => !predicate(element));
+}
+
+console.log(every2([1, 1, 1, 1, 1, 1], (n) => n === 1)); //true
+console.log(every2([1, 1, 11, 1, 1, 1], (n) => n === 1)); //false
+
+//Dominant Wrirring Direction
