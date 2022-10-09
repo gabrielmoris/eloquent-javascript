@@ -124,16 +124,20 @@ function dominantDirection(text) {
     return script ? script.direction : "none";
   }).filter(({ direction }) => direction != "none");
   let total = scripts.reduce((n, { count }) => n + count, 0);
-  if (total == 0) return "No scripts found";
+  if (total == 0) return "No dominant direction";
   const sorted = scripts.sort((a, b) => b.count - a.count);
   if (sorted[0].direction === "rtl") {
-    return "right to left";
+    return "Right to left";
   } else if (sorted[0].direction === "ltr") {
-    return "left to right";
+    return "Left to right";
+  } else if (sorted[0].direction === "ttb") {
+    return "Top to bottom";
   } else {
-    return "top to bottom";
+    //Not really neccesary
+    return "No dominant direction";
   }
 }
 console.log(dominantDirection("Hey, مساء الخير"));
 console.log(dominantDirection("HOLA"));
 console.log(dominantDirection("Hola!, ꡏꡡꡃ ꡣꡡꡙ ꡐꡜꡞ, لخير"));
+console.log(dominantDirection(",,.,!·$%%&//()=?++"));
