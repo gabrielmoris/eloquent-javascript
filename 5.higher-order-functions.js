@@ -87,7 +87,7 @@ function every2(arr, predicate) {
 // console.log(every2([1, 1, 1, 1, 1, 1], (n) => n === 1)); //true
 // console.log(every2([1, 1, 11, 1, 1, 1], (n) => n === 1)); //false
 
-//Dominant Wrirring Direction
+//Dominant Wrirring Direction*
 const SCRIPTS = require("./resources/scripts");
 // Check the code with the range of codes of each script in scropts.js and return only the scripts which include
 // that range
