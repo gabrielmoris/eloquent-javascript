@@ -84,7 +84,56 @@ function every2(arr, predicate) {
   return !arr.some((element) => !predicate(element));
 }
 
-console.log(every2([1, 1, 1, 1, 1, 1], (n) => n === 1)); //true
-console.log(every2([1, 1, 11, 1, 1, 1], (n) => n === 1)); //false
+// console.log(every2([1, 1, 1, 1, 1, 1], (n) => n === 1)); //true
+// console.log(every2([1, 1, 11, 1, 1, 1], (n) => n === 1)); //false
 
 //Dominant Wrirring Direction
+const SCRIPTS = require("./resources/scripts");
+// Check the code with the range of codes of each script in scropts.js and return only the scripts which include
+// that range
+function characterScript(code) {
+  for (let script of SCRIPTS) {
+    if (
+      script.ranges.some(([from, to]) => {
+        return code >= from && code < to;
+      })
+    ) {
+      return script;
+    }
+  }
+  return null;
+}
+//Makes an object with the count of each coincidence
+function countBy(items, groupDirection) {
+  let counts = [];
+  for (let item of items) {
+    let direction = groupDirection(item);
+    let known = counts.findIndex((count) => count.direction == direction);
+    if (known == -1) {
+      counts.push({ direction, count: 1 });
+    } else {
+      counts[known].count++;
+    }
+  }
+  return counts;
+}
+
+function dominantDirection(text) {
+  let scripts = countBy(text, (char) => {
+    let script = characterScript(char.codePointAt(0));
+    return script ? script.direction : "none";
+  }).filter(({ direction }) => direction != "none");
+  let total = scripts.reduce((n, { count }) => n + count, 0);
+  if (total == 0) return "No scripts found";
+  const sorted = scripts.sort((a, b) => b.count - a.count);
+  if (sorted[0].direction === "rtl") {
+    return "right to left";
+  } else if (sorted[0].direction === "ltr") {
+    return "left to right";
+  } else {
+    return "top to bottom";
+  }
+}
+console.log(dominantDirection("Hey, مساء الخير"));
+console.log(dominantDirection("HOLA"));
+console.log(dominantDirection("Hola!, ꡏꡡꡃ ꡣꡡꡙ ꡐꡜꡞ, لخير"));
