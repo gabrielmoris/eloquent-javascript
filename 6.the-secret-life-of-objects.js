@@ -64,3 +64,64 @@ class Group {
 // group.delete(10);
 // console.log(group.has(10));
 // // → false
+
+//Iterable groups
+
+// The next method starts by checking whether the bottom of the matrix has been reached. If it hasn’t,
+// it first creates the object holding the current value and then updates its position,
+// moving to the next row if necessary.
+
+class Group2 {
+  constructor() {
+    this.collection = [];
+  }
+  static from(value) {
+    let group = new Group2();
+    for (let item of value) {
+      group.add(item);
+    }
+    return group;
+  }
+
+  add(value) {
+    this.collection.push(value);
+  }
+  delete(value) {
+    this.collection = this.collection.filter((item) => item != value);
+  }
+  has(value) {
+    for (let i = 0; i < this.collection.length; i++) {
+      if (this.collection[i] === value) {
+        return true;
+      }
+      return false;
+    }
+  }
+  //here I put the iterator
+  [Symbol.iterator]() {
+    return new GroupIterator(this);
+  }
+}
+
+class GroupIterator {
+  constructor(g) {
+    this.iterator = 0;
+    this.group = g.collection;
+  }
+
+  next() {
+    if (this.iterator == this.group.length) return { done: true };
+    let value = this.group[this.iterator];
+    this.iterator++;
+    return { value, done: false };
+  }
+}
+
+for (let value of Group2.from(["a", "b", "c"])) {
+  console.log(value);
+}
+// → a
+// → b
+// → c
+
+// Borrowing a method
